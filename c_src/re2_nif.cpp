@@ -509,26 +509,13 @@ static ERL_NIF_TERM re2_replace(ErlNifEnv* env, int argc,
 
         if (opts.global)
         {
-            if (re2::RE2::GlobalReplace(&s, *(&re), r))
-            {
-                return rres(env, s);
-            }
-            else
-            {
-                return a_error;
-            }
+            re2::RE2::GlobalReplace(&s, *(&re), r);
         }
         else
         {
-            if (re2::RE2::Replace(&s, *(&re), r))
-            {
-                return rres(env, s);
-            }
-            else
-            {
-                return a_error;
-            }
+            re2::RE2::Replace(&s, *(&re), r);
         }
+        return rres(env, s);
     }
     else
     {
